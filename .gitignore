@@ -1,3 +1,5 @@
 __pycache__/*
-settings1.ini
+settings.ini
 cogs/__pycache__/*
+settings.ini
+modules/__pycache__/*

@@ -1,5 +1,12 @@
 from discord.ext import commands
+from modules import cfgCreate
 import os
+
+path = 'settings.ini'
+
+if os.path.exists('settings.ini') == False:
+    cfgCreate.cfgCreate(path)
+
 from config import settings
 
 bot = commands.Bot(command_prefix = settings['prefix'])
