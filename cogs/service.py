@@ -10,7 +10,7 @@ class Service(commands.Cog):
         await ctx.send(f'Pong :ping_pong:!')
 
     @commands.command(description="Shows an avatar")
-    async def avatar(ctx):
+    async def avatar(self, ctx):
         author = ctx.message.author
 
         #Я просто оставлю это здесь: я хотел, чтобы аватарка показывалась в Embed, а не в обычном тексте.
