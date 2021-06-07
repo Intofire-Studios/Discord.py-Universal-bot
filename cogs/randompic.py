@@ -21,7 +21,7 @@ class Pics(commands.Cog):
         response = requests.get('https://some-random-api.ml/img/cat')
         json_data = json.loads(response.text)
 
-        embed = discord.Embed(color = 0x808080, title = 'Кот')
+        embed = discord.Embed(color = 0x808080, title = 'Random cat')
         embed.set_image(url = json_data['link'])
         await ctx.send(embed = embed)
 def setup(bot):
