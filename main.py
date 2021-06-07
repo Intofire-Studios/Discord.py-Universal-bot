@@ -1,25 +1,11 @@
-import discord
 from discord.ext import commands
+import os
 from config import settings
-import json
-import requests
 
 bot = commands.Bot(command_prefix = settings['prefix'])
 
-@bot.command()
-async def hello(ctx):
-    author = ctx.message.author
-    await ctx.send(f'Hello, {author.mention}!')
-@bot.command()
-async def fox(ctx):
-    response = requests.get('https://some-random-api.ml/img/fox')
-    json_data = json.loads(response.text)
-
-    embed = discord.Embed(color = 0xff9900, title = 'Random Fox')
-    embed.set_image(url = json_data['link'])
-    await ctx.send(embed = embed)
-@bot.command(pass_context=True)
-async def test(ctx, arg):
-    await ctx.send(arg)
+for filename in os.listdir("./cogs"):
+    if filename.endswith(".py") and filename != "__init__.py":
+        bot.load_extension(f'cogs.{filename[:-3]}')
 
 bot.run(settings['token'])
