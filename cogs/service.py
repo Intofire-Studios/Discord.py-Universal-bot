@@ -5,11 +5,11 @@ class Service(commands.Cog):
         def __init__(self,bot):
             self.bot = bot
 
-    @commands.command(description='says "Pong"')
+    @commands.command(description='Says "Pong"', brief='Says "Pong"')
     async def ping(self, ctx):
         await ctx.send(f'Pong :ping_pong:!')
 
-    @commands.command(description="Shows an avatar")
+    @commands.command(description="Shows an avatar", brief="Shows an avatar")
     async def avatar(self, ctx):
         author = ctx.message.author
 
@@ -23,16 +23,16 @@ class Service(commands.Cog):
 
         await ctx.send(f'{author.avatar_url_as()}')
 
-    @commands.command(description="Just hello")
+    @commands.command(description="Just hello", brief="Just hello")
     async def hello(self, ctx):
         author = ctx.message.author
         await ctx.send(f'Hello, {author.mention}!')
     
-    @commands.command(pass_context=True, description="Will repeat the text")
+    @commands.command(pass_context=True, description="Will repeat the text", brief="Will repeat the text")
     async def say(self, ctx, arg):
         await ctx.send(arg)
     
-    @commands.command(description="Just hello")
+    @commands.command(description="Shutdown the bot", brief="Shutdown the bot")
     async def shutdown(self, ctx):
         await ctx.send(f'Shutting down... :wave:')
         await ctx.bot.close()

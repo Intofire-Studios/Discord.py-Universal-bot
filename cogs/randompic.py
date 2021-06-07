@@ -8,15 +8,15 @@ class Pics(commands.Cog):
         def __init__(self,bot):
             self.bot = bot
 
-    @commands.command()
+    @commands.command(description="Gives a random fox picture", brief="Gives a random fox picture")
     async def fox(self, ctx):
         response = requests.get('https://some-random-api.ml/img/fox')
         json_data = json.loads(response.text)
 
-        embed = discord.Embed(color = 0xff9900, title = 'Random Fox')
+        embed = discord.Embed(color = 0xff9900, title = 'Random fox')
         embed.set_image(url = json_data['link'])
         await ctx.send(embed = embed)
-    @commands.command()
+    @commands.command(description="Gives a random cat picture", brief="Gives a random cat picture")
     async def cat(self, ctx):
         response = requests.get('https://some-random-api.ml/img/cat')
         json_data = json.loads(response.text)
