@@ -26,7 +26,7 @@ class Service(commands.Cog):
         await ctx.send(f'Hello, {author.mention}!')
     
     @commands.command(pass_context=True)
-    async def test(self, ctx, arg):
+    async def say(self, ctx, arg):
         await ctx.send(arg)
 
 def setup(bot):
