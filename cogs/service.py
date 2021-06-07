@@ -31,6 +31,11 @@ class Service(commands.Cog):
     @commands.command(pass_context=True, description="Will repeat the text")
     async def say(self, ctx, arg):
         await ctx.send(arg)
+    
+    @commands.command(description="Just hello")
+    async def shutdown(self, ctx):
+        await ctx.send(f'Shutting down... :wave:')
+        await ctx.bot.close()
 
 def setup(bot):
     bot.add_cog(Service(bot))
