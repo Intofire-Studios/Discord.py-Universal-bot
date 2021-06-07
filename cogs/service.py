@@ -7,7 +7,18 @@ class Service(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send(f'Pong!')
+        await ctx.send(f'Pong :ping_pong:!')
+
+    @commands.command()
+    async def avatar(ctx):
+        author = ctx.message.author
+        #link = {author.avatar_url_as()}
+
+        #embed = discord.Embed(color = 0x002fff, title = 'Аватар пользователя')
+        #embed.set_image(url = link)
+        #await ctx.send(embed = embed)
+
+        await ctx.send(f'{author.avatar_url_as()}')
 
     @commands.command(description="Just hello")
     async def hello(self, ctx):
