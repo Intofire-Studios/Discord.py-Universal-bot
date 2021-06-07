@@ -5,13 +5,16 @@ class Service(commands.Cog):
         def __init__(self,bot):
             self.bot = bot
 
-    @commands.command()
+    @commands.command(description='says "Pong"')
     async def ping(self, ctx):
         await ctx.send(f'Pong :ping_pong:!')
 
-    @commands.command()
+    @commands.command(description="Shows an avatar")
     async def avatar(ctx):
         author = ctx.message.author
+
+        #Я просто оставлю это здесь: я хотел, чтобы аватарка показывалась в Embed, а не в обычном тексте.
+
         #link = {author.avatar_url_as()}
 
         #embed = discord.Embed(color = 0x002fff, title = 'Аватар пользователя')
@@ -25,7 +28,7 @@ class Service(commands.Cog):
         author = ctx.message.author
         await ctx.send(f'Hello, {author.mention}!')
     
-    @commands.command(pass_context=True)
+    @commands.command(pass_context=True, description="Will repeat the text")
     async def say(self, ctx, arg):
         await ctx.send(arg)
 
