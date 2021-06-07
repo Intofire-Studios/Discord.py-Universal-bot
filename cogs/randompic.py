@@ -5,8 +5,7 @@ import requests
 
 class Pics(commands.Cog):
     def __init__(self, bot):
-        def __init__(self,bot):
-            self.bot = bot
+        self.bot = bot
 
     @commands.command(description="Gives a random fox picture", brief="Gives a random fox picture")
     async def fox(self, ctx):

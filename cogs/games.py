@@ -3,8 +3,7 @@ from discord.ext import commands
 
 class Games(commands.Cog):
     def __init__(self, bot):
-        def __init__(self,bot):
-            self.bot = bot
+        self.bot = bot
 
     @commands.command(description="Gives a random number between 1 and 100", brief="Gives a random number between 1 and 100")
     async def roll(self, ctx):

@@ -2,8 +2,7 @@ from discord.ext import commands
 
 class Service(commands.Cog):
     def __init__(self, bot):
-        def __init__(self,bot):
-            self.bot = bot
+        self.bot = bot
 
     @commands.command(description='Says "Pong"', brief='Says "Pong"')
     async def ping(self, ctx):
