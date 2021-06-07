@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix = settings['prefix'])
 
 @bot.event
 async def on_ready():
-    print("Bot is running...")
+    print("Logged in as", bot.user.name)
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py") and filename != "__init__.py":
