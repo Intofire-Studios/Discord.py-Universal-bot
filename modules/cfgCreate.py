@@ -1,4 +1,5 @@
 from configparser import ConfigParser
+from os import system
 
 config = ConfigParser()
 
@@ -14,3 +15,5 @@ def cfgCreate(path):
     with open(path, "w+") as config_file:
         path = "settings.ini"
         config.write(config_file)
+    
+    system("cls")
