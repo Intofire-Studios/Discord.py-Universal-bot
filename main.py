@@ -19,6 +19,9 @@ bot = commands.Bot(command_prefix = settings['prefix'])
 async def on_ready():
     text = "\033[32m {}" .format("Logged in as " + bot.user.name)
     table = [[text]]
+    print(tabulate(table, tablefmt='grid'), "\033[0m ")
+    pref = "\033[31m {}" .format("Prefix: " + settings['prefix'])
+    table = [[pref]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 
 for filename in os.listdir("./cogs"):
