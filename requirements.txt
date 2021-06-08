@@ -1,6 +1,6 @@
-youtube_dl==2021.6.6
 requests==2.25.1
-tabulate==0.8.9
 discord.py==1.7.2
-discord.py[voice]==1.7.2
+youtube_dl==2021.6.6
+tabulate==0.8.9
 discord==1.0.1
+discord.py[voice]==1.7.2
