@@ -1,61 +1,36 @@
 import discord
-import json
-import os
-
-from discord import client
 from discord.ext import commands
-import sys
-sys.path.append("../")
-from config import settings
+import json
 
-commands = commands.Bot(command_prefix = settings['prefix'])
+from discord.ext.commands.converter import EmojiConverter
 
-class Rank(commands.Cog):
+class leveling(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        os.chdir(r'C:\Users\User\Documents\GitHub\Discord.py-Universal-bot')
-
-        @commands.event
-        async def on_member_join(member):
-            with open('users.json', 'r') as f:
-                users = json.load(f)
-
-            await update_data(users, member)
-
-            with open('users.json', 'w') as f:
-                json.dump(users, f)
-
-        @commands.event
-        async def on_message(message):
-            with open('users.json', 'r') as f:
-                users = json.load(f)
-
-            await update_data(users, message.author)
-            await add_experience(users, message.author, 5)
-            await level_up(users, message.author, message.channel)
-
-            with open('users.json', 'w') as f:
-                json.dump(users, f)
-
-        async def update_data(users, user):
-            if not user.id in users:
-                users[user.id] = {}
-                users[user.id]['experiense'] = 0
-                users[user.id]['level'] = 1
-
-        async def add_experience(users, user, exp):
-            users[user.id]['experience'] += exp
-
-
-        async def level_up(users, user, channel):
-            experience = users[user.id]['experience']
-            lvl_start = users[user.id]['level']
-            lvl_end = int(experience ** (1/4))
-
-            if lvl_start < lvl_end:
-                await client.send_message(channel, '{} has leveled up to level {}'.format(user.mention, lvl_end))
-                users[user.id]['level'] = lvl_end
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        with open('users.json', 'r', encoding='utf8') as f:
+            user = json.load(f)
+        try:
+            with open('users.json', 'w', encoding='utf8') as f:
+                user[str(message.author.id)]['exp'] = user[str(message.author.id)]['exp']+1
+                lvl_start = user[str(message.author.id)]['level']
+                lvl_end = user[str(message.author.id)]['exp'] ** (1.5/4)
+                if lvl_start < lvl_end:
+                    user[str(message.author.id)]['level'] = user[str(message.author.id)]['level']+1
+                    lvl = user[str(message.author.id)]['level']
+                    await message.channel.send("Oh, {message.author.name} has level up to {lvl}")
+                    json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
+                    return
+                json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
+        except:
+            with open('users.json', 'w', encoding='utf8') as f:
+                user = {}
+                user[str(message.author.id)] = {}
+                user[str(message.author.id)]['level'] = 0
+                user[str(message.author.id)]['exp'] = 0
+                json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
 
 def setup(bot):
-    bot.add_cog(Rank(bot))
+    bot.add_cog(leveling(bot))
