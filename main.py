@@ -24,6 +24,31 @@ async def on_ready():
     table = [[pref]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 
+@bot.command() #Даня заполни пж описание
+async def unload(ctx, extension):
+    if ctx.author.id == int(settings['adminid']):
+        bot.unload_extension(f"cogs.{extension}")
+        await ctx.send("Cogs is unloaded...")
+    else:
+        await ctx.send("You don't have enough rights to exec this command.")
+
+@bot.command() #Даня заполни пж описание
+async def load(ctx, extension):
+    if ctx.author.id == int(settings['adminid']):
+        bot.load_extension(f"cogs.{extension}")
+        await ctx.send("Cogs is loaded...")
+    else:
+        await ctx.send("You don't have enough rights to exec this command.")
+
+@bot.command() #Даня заполни пж описание
+async def reload(ctx, extension):
+    if ctx.author.id == int(settings['adminid']):
+        bot.unload_extension(f"cogs.{extension}")
+        bot.load_extension(f"cogs.{extension}")
+        await ctx.send("Cogs is reloaded...")
+    else:
+        await ctx.send("You don't have enough rights to exec this command.")
+
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py") and filename != "__init__.py":
         bot.load_extension(f'cogs.{filename[:-3]}')

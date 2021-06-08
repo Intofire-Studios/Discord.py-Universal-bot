@@ -1,4 +1,7 @@
 from discord.ext import commands
+import sys
+sys.path.append("../")
+from config import settings
 
 class Service(commands.Cog):
     def __init__(self, bot):
@@ -33,8 +36,11 @@ class Service(commands.Cog):
     
     @commands.command(description="Shutdown the bot", brief="Shutdown the bot")
     async def shutdown(self, ctx):
-        await ctx.send(f'Shutting down... :wave:')
-        await ctx.bot.close()
+        if ctx.author.id == int(settings['adminid']):
+            await ctx.send(f'Shutting down... :wave:')
+            await ctx.bot.close()
+        else:
+            await ctx.send("You don't have enough rights to exec this command.")
 
 def setup(bot):
     bot.add_cog(Service(bot))
