@@ -20,7 +20,7 @@ class leveling(commands.Cog):
                 if lvl_start < lvl_end:
                     user[str(message.author.id)]['level'] = user[str(message.author.id)]['level']+1
                     lvl = user[str(message.author.id)]['level']
-                    await message.channel.send("Oh, {message.author.name} has level up to {lvl}")
+                    await message.channel.send(f"Oh, <@{message.author.id}> has level up to {lvl}!")
                     json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
                     return
                 json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
