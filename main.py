@@ -1,19 +1,23 @@
-from discord.ext import commands
-from modules import cfgCreate
 import os
 from os import system
+
+from config import settings
+
+from discord.ext import commands
+
+from modules import cfgCreate
+
 from tabulate import tabulate
 
 system("cls")
 
 path = 'settings.ini'
 
-if os.path.exists('settings.ini') == False:
-    cfgCreate.cfgCreate(path)
+if not os.path.exists('settings.ini'):
+    cfgCreate.cfgcreate(path)
 
-from config import settings
+bot = commands.Bot(command_prefix=settings['prefix'])
 
-bot = commands.Bot(command_prefix = settings['prefix'])
 
 @bot.event
 async def on_ready():
@@ -24,7 +28,8 @@ async def on_ready():
     table = [[pref]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 
-@bot.command() #Даня заполни пж описание
+
+@bot.command()  # Даня заполни пж описание
 async def unload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
@@ -32,7 +37,8 @@ async def unload(ctx, extension):
     else:
         await ctx.send("You don't have enough rights to exec this command.")
 
-@bot.command() #Даня заполни пж описание
+
+@bot.command()  # Даня заполни пж описание
 async def load(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.load_extension(f"cogs.{extension}")
@@ -40,7 +46,8 @@ async def load(ctx, extension):
     else:
         await ctx.send("You don't have enough rights to exec this command.")
 
-@bot.command() #Даня заполни пж описание
+
+@bot.command()  # Даня заполни пж описание
 async def reload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
