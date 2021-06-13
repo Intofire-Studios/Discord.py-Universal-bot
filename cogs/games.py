@@ -11,8 +11,8 @@ class Games(commands.Cog):
         description="Gives a random number between 1 and 100",
         brief="Gives a random number between 1 and 100")
     async def roll(self, ctx):
-        n = random.randrange(1, 100)
-        await ctx.send(n)
+        num = random.randrange(1, 100)
+        await ctx.send(num)
 
     @commands.command(
         description="Random number between 1 and 6",

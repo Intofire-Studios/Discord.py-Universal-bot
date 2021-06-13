@@ -29,7 +29,7 @@ async def on_ready():
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 
 
-@bot.command()  # Даня заполни пж описание
+@bot.command()  # TODO: Make a description
 async def unload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
@@ -38,7 +38,7 @@ async def unload(ctx, extension):
         await ctx.send("You don't have enough rights to exec this command.")
 
 
-@bot.command()  # Даня заполни пж описание
+@bot.command()  # TODO: Make a description
 async def load(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.load_extension(f"cogs.{extension}")
@@ -47,7 +47,7 @@ async def load(ctx, extension):
         await ctx.send("You don't have enough rights to exec this command.")
 
 
-@bot.command()  # Даня заполни пж описание
+@bot.command()  # TODO: Make a description
 async def reload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
