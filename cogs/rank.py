@@ -26,10 +26,7 @@ class leveling(commands.Cog):
                 json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
         except:
             with open('users.json', 'w', encoding='utf8') as f:
-                user = {}
-                user[str(message.author.id)] = {}
-                user[str(message.author.id)]['level'] = 0
-                user[str(message.author.id)]['exp'] = 0
+                user = {str(message.author.id): {'level': 0, 'exp': 0}}
                 json.dump(user,f,sort_keys=True,indent=4,ensure_ascii=False)
 
 def setup(bot):
