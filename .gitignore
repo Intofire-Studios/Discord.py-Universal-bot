@@ -2,3 +2,4 @@ __pycache__/*
 settings.ini
 cogs/__pycache__/*
 modules/__pycache__/*
+database.db
