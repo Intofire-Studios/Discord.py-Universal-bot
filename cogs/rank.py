@@ -48,7 +48,6 @@ class Rank(commands.Cog):
         result = await self.find_or_insert_user(message.author)
 
         user_id, guild_id, xp, level = result
-        print(xp, level)
 
         xp += random.randint(10, 40)
         if self.calculate_level(xp) > level:
