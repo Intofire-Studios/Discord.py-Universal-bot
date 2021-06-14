@@ -35,7 +35,7 @@ async def unload(ctx, extension):
         bot.unload_extension(f"cogs.{extension}")
         await ctx.send("Cogs is unloaded...")
     else:
-        await ctx.send("You don't have enough rights to exec this command.")
+        await ctx.send("You don't have enough rights to execute this command.")
 
 
 @bot.command()  # TODO: Make a description
@@ -44,7 +44,7 @@ async def load(ctx, extension):
         bot.load_extension(f"cogs.{extension}")
         await ctx.send("Cogs is loaded...")
     else:
-        await ctx.send("You don't have enough rights to exec this command.")
+        await ctx.send("You don't have enough rights to execute this command.")
 
 
 @bot.command()  # TODO: Make a description

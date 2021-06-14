@@ -40,7 +40,7 @@ class Service(commands.Cog):
             await ctx.send('Shutting down... :wave:')
             await ctx.bot.close()
         else:
-            await ctx.send("You don't have enough rights to exec this command.")
+            await ctx.send("You don't have enough rights to execute this command.")
 
 
 def setup(bot):
