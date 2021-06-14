@@ -4,3 +4,4 @@ cogs/__pycache__/*
 modules/__pycache__/*
 extensions/databases/ranks.db
 extensions/json/reactrole.json
+extensions/config/__pycache__/*
