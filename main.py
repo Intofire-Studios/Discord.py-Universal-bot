@@ -1,10 +1,10 @@
 import os
 from os import system
 
-from config import settings
-
 import discord
 from discord.ext import commands
+
+from extensions.config.config import settings
 
 from modules import cfgCreate
 

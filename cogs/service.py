@@ -1,9 +1,9 @@
 import json
 
-from config import settings
-
 import discord
 from discord.ext import commands
+
+from extensions.config.config import settings
 
 
 class Service(commands.Cog):
@@ -52,7 +52,7 @@ class Service(commands.Cog):
     async def on_raw_reaction_add(self, payload):
 
         if not payload.member.bot:
-            with open('reactrole.json') as react_file:
+            with open('extensions/json/reactrole.json') as react_file:
                 data = json.load(react_file)
                 for xxx in data:
                     if xxx['emoji'] == payload.emoji.name:
@@ -63,7 +63,7 @@ class Service(commands.Cog):
 
     @commandd.event
     async def on_raw_reaction_remove(self, payload):
-        with open('reactrole.json') as react_file:
+        with open('extensions/json/reactrole.json') as react_file:
             data = json.load(react_file)
             for xxx in data:
                 if xxx['emoji'] == payload.emoji.name:
@@ -79,7 +79,7 @@ class Service(commands.Cog):
         msg = await ctx.channel.send(embed=emb)
         await msg.add_reaction(emoji)
 
-        with open('reactrole.json') as json_file:
+        with open('extensions/json/reactrole.json') as json_file:
             data = json.load(json_file)
 
             new_react_role = {
@@ -90,7 +90,7 @@ class Service(commands.Cog):
 
             data.append(new_react_role)
 
-        with open('reactrole.json', 'w') as f:
+        with open('extensions/json/reactrole.json', 'w') as f:
             json.dump(data, f, indent=4)
 
 

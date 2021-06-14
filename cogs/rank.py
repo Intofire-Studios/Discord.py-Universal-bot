@@ -19,7 +19,7 @@ class Rank(commands.Cog):
         self.bot.loop.create_task(self.connect_database())
 
     async def connect_database(self):
-        self.db = await aiosqlite.connect('database.db')
+        self.db = await aiosqlite.connect('extensions/databases/ranks.db')
 
     async def find_or_insert_user(self, member: discord.Member):
         # user_id, guild_id, xp, level
@@ -83,18 +83,18 @@ class Rank(commands.Cog):
         img.paste(logo, (20, 20), mask=logo)
 
         # Black Circle
-        #draw = ImageDraw.Draw(img, 'RGB')
-        #draw.ellipse((152, 152, 208, 208), fill='#000')
+        # draw = ImageDraw.Draw(img, 'RGB')
+        # draw.ellipse((152, 152, 208, 208), fill='#000')
 
         # Placing offline or Online Status
         # Discord Colors (Online: '#43B581')
-        #draw.ellipse((155, 155, 205, 205), fill='#43B581')
+        # draw.ellipse((155, 155, 205, 205), fill='#43B581')
         ##################################
 
         # Working with fonts
-        big_font = ImageFont.FreeTypeFont('fonts/ABeeZee-Regular.otf', 60)
-        medium_font = ImageFont.FreeTypeFont('fonts/ABeeZee-Regular.otf', 40)
-        small_font = ImageFont.FreeTypeFont('fonts/ABeeZee-Regular.otf', 30)
+        big_font = ImageFont.FreeTypeFont('extensions/fonts/ABeeZee-Regular.otf', 60)
+        medium_font = ImageFont.FreeTypeFont('extensions/fonts/ABeeZee-Regular.otf', 40)
+        small_font = ImageFont.FreeTypeFont('extensions/fonts/ABeeZee-Regular.otf', 30)
 
         # Placing Level text (right-upper part)
         text_size = draw.textsize(f"{level}", font=big_font)
