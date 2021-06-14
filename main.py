@@ -4,9 +4,7 @@ from os import system
 import discord
 from discord.ext import commands
 
-from extensions.config.config import settings
-
-from modules import cfgCreate
+from extensions.config import cfgCreate
 
 from tabulate import tabulate
 
@@ -16,6 +14,8 @@ path = 'settings.ini'
 
 if not os.path.exists('settings.ini'):
     cfgCreate.cfgcreate(path)
+
+from extensions.config.config import settings
 
 bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
 
