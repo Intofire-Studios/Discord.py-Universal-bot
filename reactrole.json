@@ -1,26 +1,3 @@
 [
-    {
-        "role_name": "JB-CLR-002FFF",
-        "role_id": 824023989915615253,
-        "emoji": "<:pixelcheckmark:805443771784495114>",
-        "message_id": 854048799491620934
-    },
-    {
-        "role_name": "\ud83d\ude36\u041c\u044c\u044e\u0442",
-        "role_id": 837388981771436084,
-        "emoji": "\ud83d\udc4d",
-        "message_id": 854049014705029151
-    },
-    {
-        "role_name": "\ud83d\ude36\u041c\u044c\u044e\u0442",
-        "role_id": 837388981771436084,
-        "emoji": "\ud83d\udc4d",
-        "message_id": 854049802035658762
-    },
-    {
-        "role_name": "\ud83d\ude36\u041c\u044c\u044e\u0442",
-        "role_id": 837388981771436084,
-        "emoji": "\ud83d\udc4d",
-        "message_id": 854050573389266984
-    }
+    
 ]
