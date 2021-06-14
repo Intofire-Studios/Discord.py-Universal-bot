@@ -75,16 +75,20 @@ class Rank(commands.Cog):
         draw.ellipse((0, 0) + bigsize, fill=255)
         mask = mask.resize(logo.size, Image.ANTIALIAS)
         logo.putalpha(mask)
+
+        draw = ImageDraw.Draw(img, 'RGB')
+        draw.rectangle((0, 0, 1000, 300), fill='#000000')
+
         ##############################
         img.paste(logo, (20, 20), mask=logo)
 
         # Black Circle
-        draw = ImageDraw.Draw(img, 'RGB')
-        draw.ellipse((152, 152, 208, 208), fill='#000')
+        #draw = ImageDraw.Draw(img, 'RGB')
+        #draw.ellipse((152, 152, 208, 208), fill='#000')
 
         # Placing offline or Online Status
         # Discord Colors (Online: '#43B581')
-        draw.ellipse((155, 155, 205, 205), fill='#43B581')
+        #draw.ellipse((155, 155, 205, 205), fill='#43B581')
         ##################################
 
         # Working with fonts
