@@ -3,6 +3,7 @@ from os import system
 
 from config import settings
 
+import discord
 from discord.ext import commands
 
 from modules import cfgCreate
@@ -16,7 +17,7 @@ path = 'settings.ini'
 if not os.path.exists('settings.ini'):
     cfgCreate.cfgcreate(path)
 
-bot = commands.Bot(command_prefix=settings['prefix'])
+bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
 
 
 @bot.event

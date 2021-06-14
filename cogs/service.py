@@ -1,9 +1,15 @@
+import json
+
 from config import settings
 
+import discord
 from discord.ext import commands
 
 
 class Service(commands.Cog):
+
+    commandd = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -41,6 +47,51 @@ class Service(commands.Cog):
             await ctx.bot.close()
         else:
             await ctx.send("You don't have enough rights to execute this command.")
+
+    @commandd.event
+    async def on_raw_reaction_add(self, payload):
+
+        if not payload.member.bot:
+            with open('reactrole.json') as react_file:
+                data = json.load(react_file)
+                for xxx in data:
+                    if xxx['emoji'] == payload.emoji.name:
+                        role = discord.utils.get(commands.get_guild(
+                            payload.guild_id).roles, id=xxx['role_id'])
+
+                        await payload.member.add_roles(role)
+
+    @commandd.event
+    async def on_raw_reaction_remove(self, payload):
+        with open('reactrole.json') as react_file:
+            data = json.load(react_file)
+            for xxx in data:
+                if xxx['emoji'] == payload.emoji.name:
+                    role = discord.utils.get(commands.get_guild(
+                        payload.guild_id).roles, id=xxx['role_id'])
+                    await commands.get_guild(payload.guild_id).get_member(payload.user_id).remove_roles(role)
+
+    @commands.command()
+    @commands.has_permissions(administrator=True, manage_roles=True)
+    async def reactrole(self, ctx, emoji, role: discord.Role, *, message):
+
+        emb = discord.Embed(description=message)
+        msg = await ctx.channel.send(embed=emb)
+        await msg.add_reaction(emoji)
+
+        with open('reactrole.json') as json_file:
+            data = json.load(json_file)
+
+            new_react_role = {
+                'role_name': role.name,
+                'role_id': role.id,
+                'emoji': emoji,
+                'message_id': msg.id}
+
+            data.append(new_react_role)
+
+        with open('reactrole.json', 'w') as f:
+            json.dump(data, f, indent=4)
 
 
 def setup(bot):
