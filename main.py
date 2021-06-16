@@ -22,7 +22,15 @@ bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.al
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.idle, activity=discord.Game("https://github.com/Rarmash/Discord.py-Universal-bot"))
+    if settings['status'] == "online":
+        await bot.change_presence(status=discord.Status.online, activity=discord.Game(settings['playing']))
+    elif settings['status'] == "idle":
+        await bot.change_presence(status=discord.Status.idle, activity=discord.Game(settings['playing']))
+    elif settings['status'] == "dnd":
+        await bot.change_presence(status=discord.Status.dnd, activity=discord.Game(settings['playing']))
+    elif settings['status'] == "insivible":
+        await bot.change_presence(status=discord.Status.invisible, activity=discord.Game(settings['playing']))
+
     text = "\033[32m {}" .format("Logged in as " + bot.user.name)
     table = [[text]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ")

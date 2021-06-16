@@ -10,4 +10,6 @@ settings = {
     'id': config.get("BOT", "clientid"),
     'adminid': config.get("BOT", "adminid"),
     'prefix': config.get("BOT", "prefix"),
+    'status': config.get("BOT", "status"),
+    'playing': config.get("BOT", "playing"),
 }
