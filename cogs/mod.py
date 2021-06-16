@@ -20,7 +20,7 @@ class Moderation(commands.Cog):
         await member.ban(reason=reason)
         await ctx.send(f"{member.mention} was banned by {ctx.author.mention}. [{reason}]")
     
-    @commands.command(description="clear messages", brief="clear [number]") # TODO: Make a description
+    @commands.command(description="unban user", brief="unban [ping/ID]")
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, member):
         banned_users = await ctx.guild.bans()
