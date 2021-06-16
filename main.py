@@ -27,8 +27,8 @@ async def on_ready():
     elif settings['status'] == "idle":
         await bot.change_presence(status=discord.Status.idle, activity=discord.Game(settings['playing']))
     elif settings['status'] == "dnd":
-        await bot.change_presence(status=discord.Status.dnd, activity=discord.Game(settings['playing']))
-    elif settings['status'] == "insivible":
+        await bot.change_presence(status=discord.Status.do_not_disturb, activity=discord.Game(settings['playing']))
+    elif settings['status'] == "invisible":
         await bot.change_presence(status=discord.Status.invisible, activity=discord.Game(settings['playing']))
 
     text = "\033[32m {}" .format("Logged in as " + bot.user.name)
@@ -36,6 +36,12 @@ async def on_ready():
     print(tabulate(table, tablefmt='grid'), "\033[0m ")
     pref = "\033[31m {}" .format("Prefix: " + settings['prefix'])
     table = [[pref]]
+    print(tabulate(table, tablefmt='grid'), "\033[0m ")
+    stat = "\033[33m {}" .format("Status: " + settings['status'])
+    table = [[stat]]
+    print(tabulate(table, tablefmt='grid'), "\033[0m ")
+    pl = "\033[34m {}" .format("Playing: " + settings['playing'])
+    table = [[pl]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 
 
@@ -64,7 +70,7 @@ async def reload(ctx, extension):
         bot.load_extension(f"cogs.{extension}")
         await ctx.send("Cogs is reloaded...")
     else:
-        await ctx.send("You don't have enough rights to exec this command.")
+        await ctx.send("You don't have enough rights to execute this command.")
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py") and filename != "__init__.py":
