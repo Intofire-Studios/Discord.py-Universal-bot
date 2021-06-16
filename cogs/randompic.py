@@ -10,7 +10,7 @@ class Pics(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(description="Gives a random fox picture", brief="Gives a random fox picture")
+    @commands.command(description="Gives a random fox picture", brief="fox")
     async def fox(self, ctx):
         response = requests.get('https://some-random-api.ml/img/fox')
         json_data = json.loads(response.text)
@@ -21,7 +21,7 @@ class Pics(commands.Cog):
 
     @commands.command(
         description="Gives a random cat picture",
-        brief="Gives a random cat picture")
+        brief="cat")
     async def cat(self, ctx):
         response = requests.get('https://some-random-api.ml/img/cat')
         json_data = json.loads(response.text)

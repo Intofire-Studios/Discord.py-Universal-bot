@@ -55,7 +55,7 @@ class Music(commands.Cog):
         else:
             asyncio.run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
 
-    @commands.command(aliases=['p'], brief='!play [url/key-words]', description='Plays youtube videos')
+    @commands.command(aliases=['p'], brief='play [url/key_words]', description='Plays youtube videos')
     async def play(self, ctx, *arg):
         channel = ctx.message.author.voice.channel
         await ctx.channel.purge(limit=1)
@@ -83,7 +83,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("❌ Connect to a voice channel first!", delete_after=5.0)
 
-    @commands.command(aliases=['q'], brief="!queue", description="Queue")
+    @commands.command(aliases=['q'], brief="queue", description="Queue")
     async def queue(self, ctx):
         await ctx.channel.purge(limit=1)
         voice = get(self.bot.voice_clients, guild=ctx.guild)
@@ -99,7 +99,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("❌ I'm not playing anything!", delete_after=5.0)
 
-    @commands.command(brief='!pause', description='Pauses or resumes the current song')
+    @commands.command(brief='pause', description='Pauses or resumes the current song')
     async def pause(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         await ctx.channel.purge(limit=1)
@@ -113,7 +113,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("❌ I'm not connected to any channel!", delete_after=5.0)
 
-    @commands.command(aliases=['s', 'pass'], brief='!skip', description='Skips the current song')
+    @commands.command(aliases=['s', 'pass'], brief='skip', description='Skips the current song')
     async def skip(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         await ctx.channel.purge(limit=1)
