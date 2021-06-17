@@ -14,9 +14,6 @@ Universal Discord bot based on Discord.py.
 - Some mini-games like battleship
 - ...and something else.
 
-### OMG! How can I change my bot settings?
-Just edit `settings.ini`.
-
 ## 🛠️ Installation Steps
 #### Windows:
 1. Clone the repository.
@@ -44,3 +41,6 @@ pip install -r requirements.txt
 python main.py
 ```
 5. Go through the initial setup.
+
+### OMG! How can I change my bot settings?
+Just edit `settings.ini`.
