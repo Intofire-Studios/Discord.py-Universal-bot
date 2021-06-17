@@ -1,5 +1,6 @@
 from configparser import ConfigParser
 from os import system
+from sys import platform
 
 config = ConfigParser()
 path = "settings.ini"
@@ -16,4 +17,7 @@ def cfgcreate(path):
     with open(path, "w+") as config_file:
         path = "settings.ini"
         config.write(config_file)
-    system("cls")
+    if platform in ["linux", "linux2"]:
+        system("reset")
+    elif platform == "win32":
+        system("cls")
