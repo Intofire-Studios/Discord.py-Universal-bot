@@ -37,7 +37,7 @@ cd Discord.py-Universal-bot
 pip install -r requirements.txt
 ```
 4. Run Python file:
-```
+```Python
 python main.py
 ```
 5. Go through the initial setup.
