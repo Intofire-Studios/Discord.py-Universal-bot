@@ -1,6 +1,6 @@
 import os
 from os import system
-
+from sys import platform
 import discord
 from discord.ext import commands
 
@@ -8,7 +8,10 @@ from extensions.config import cfgCreate
 
 from tabulate import tabulate
 
-system("cls")
+if platform in ["linux", "linux2"]:
+    system("reset")
+elif platform == "win32":
+    system("cls")
 
 path = 'settings.ini'
 
@@ -49,7 +52,7 @@ async def on_ready():
 async def unload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
-        await ctx.send("Cogs is unloaded...")
+        await ctx.send("Cog is unloaded...")
     else:
         await ctx.send("You don't have enough rights to execute this command.")
 
@@ -58,7 +61,7 @@ async def unload(ctx, extension):
 async def load(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.load_extension(f"cogs.{extension}")
-        await ctx.send("Cogs is loaded...")
+        await ctx.send("Cog is loaded...")
     else:
         await ctx.send("You don't have enough rights to execute this command.")
 
@@ -68,7 +71,7 @@ async def reload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
         bot.load_extension(f"cogs.{extension}")
-        await ctx.send("Cogs is reloaded...")
+        await ctx.send("Cog is reloaded...")
     else:
         await ctx.send("You don't have enough rights to execute this command.")
 
