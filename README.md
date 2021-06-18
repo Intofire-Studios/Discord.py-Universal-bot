@@ -4,6 +4,7 @@ Universal Discord bot based on Discord.py.
 - Custom status
 - Moderations tools (ban, unban, clear messages, kick)
 - Music part (based on YouTubeDL)
+- Polls
 - Ranks and levels
 - Bot management commands (shutdown, cogs management, etc.)
 - ...and some interesting commands like random pics :)
