@@ -23,7 +23,11 @@ class Music(commands.Cog):
 
     @staticmethod
     def search(author, arg):
-        ydl_opts = {'format': 'bestaudio', 'noplaylist': 'True'}
+        ydl_opts = {
+            'quiet': 'True',
+            'format': 'bestaudio',
+            'noplaylist': 'True'
+            }
         try:
             requests.get("".join(arg))
         except:
@@ -55,7 +59,7 @@ class Music(commands.Cog):
         else:
             asyncio.run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
 
-    @commands.command(aliases=['p'], brief='play [url/key_words]', description='Plays youtube videos')
+    @commands.command(brief='play [url/key_words]', description='Plays youtube videos')
     async def play(self, ctx, *arg):
         channel = ctx.message.author.voice.channel
         await ctx.channel.purge(limit=1)
