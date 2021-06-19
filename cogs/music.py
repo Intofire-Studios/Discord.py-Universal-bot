@@ -80,10 +80,6 @@ class Music(commands.Cog):
                 await ctx.send(
                     f":white_check_mark: Track **{song['title']}**  has been added to queue ({len(self.song_queue)-1} to go)",
                     delete_after=self.song_queue[0]['duration'])
-        else:
-            async def example_error(self, ctx: commands.Context, error: commands.CommandError):
-                if isinstance(error, commands.CommandInvokeError):
-                    await ctx.send("❌ Connect to a voice channel first!", delete_after=5.0)
 
     @commands.command(aliases=['q'], brief="queue", description="Queue")
     async def queue(self, ctx):
