@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands.core import guild_only
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
