@@ -15,6 +15,10 @@ Universal Discord bot based on Discord.py.
 - Some mini-games like battleship
 - ...and something else.
 
+### There are two branches of development:
+- [master](https://github.com/Rarmash/Discord.py-Universal-bot/tree/master) (Stable)
+- [dev](https://github.com/Rarmash/Discord.py-Universal-bot/tree/dev) (like Beta)
+
 ## 🛠️ Installation Steps
 #### Windows:
 1. Clone the repository.
