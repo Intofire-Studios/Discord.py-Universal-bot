@@ -1,10 +1,7 @@
 import json
-
 import discord
 from discord.ext import commands
-
 from extensions.config.config import settings
-
 
 class Service(commands.Cog):
 

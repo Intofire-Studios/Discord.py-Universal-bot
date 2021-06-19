@@ -1,16 +1,11 @@
 import io
 import math
 import random
-
 from PIL import Image, ImageDraw, ImageFont
-
 import aiohttp
-
 import aiosqlite
-
 import discord
 from discord.ext import commands
-
 
 class Rank(commands.Cog):
     def __init__(self, bot):
