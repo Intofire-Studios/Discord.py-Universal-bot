@@ -1,16 +1,11 @@
 import io
 import math
 import random
-
 from PIL import Image, ImageDraw, ImageFont
-
 import aiohttp
-
 import aiosqlite
-
 import discord
 from discord.ext import commands
-
 
 class Rank(commands.Cog):
     def __init__(self, bot):
@@ -203,7 +198,7 @@ class Rank(commands.Cog):
         bit.seek(0)
         return bit
 
-    @commands.command()
+    @commands.command(description="View your rank", brief="View your rank")
     async def rank(self, ctx: commands.Context, member: discord.Member = None):
         member = member or ctx.author
         cursor = await self.db.cursor()

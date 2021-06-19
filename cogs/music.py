@@ -1,13 +1,9 @@
 import asyncio
-
 import discord
 from discord.ext import commands
 from discord.utils import get
-
 import requests
-
 import youtube_dl
-
 
 class Music(commands.Cog):
     def __init__(self, bot):
@@ -84,8 +80,6 @@ class Music(commands.Cog):
                 await ctx.send(
                     f":white_check_mark: Track **{song['title']}**  has been added to queue ({len(self.song_queue)-1} to go)",
                     delete_after=self.song_queue[0]['duration'])
-        else:
-            await ctx.send("❌ Connect to a voice channel first!", delete_after=5.0)
 
     @commands.command(aliases=['q'], brief="queue", description="Queue")
     async def queue(self, ctx):

@@ -8,7 +8,7 @@ class Poll(commands.Cog):
 
     commandd = commands.Bot(command_prefix=settings['prefix'])
 
-    @commandd.command()
+    @commandd.command(description="Creates a poll", brief="Creates a poll")
     async def poll(self, ctx, *, question=None):
         if question is None:
             await ctx.send("Please write a poll!")
