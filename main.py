@@ -4,7 +4,7 @@ from sys import platform
 import discord
 from discord.ext import commands
 
-from extensions.config import cfgCreate
+from extensions.config.cfgCreate import cfgcreate
 
 from tabulate import tabulate
 
@@ -16,7 +16,7 @@ elif platform == "win32":
 path = 'settings.ini'
 
 if not os.path.exists('settings.ini'):
-    cfgCreate.cfgcreate(path)
+    cfgcreate(path)
 
 from extensions.config.config import settings
 

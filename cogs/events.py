@@ -39,7 +39,11 @@ class Events(commands.Cog):
             await ctx.send(embed=em15)
         if isinstance(error, commands.CommandInvokeError):
             await ctx.channel.purge(limit=1)
-            await ctx.send('❌ Connect to a voice channel first!', delete_after=5.0)
+            msg4 = "❌ Connect to a voice channel first!"
+            em16 = discord.Embed(title="**Error Block**",
+                                color=discord.Color.red())
+            em16.add_field(name="__Not in a voice channel:__", value=msg4)
+            await ctx.send(embed=em16, delete_after=5.0)
 
 def setup(bot):
     bot.add_cog(Events(bot))
