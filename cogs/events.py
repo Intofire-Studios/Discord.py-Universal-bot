@@ -13,27 +13,25 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
-        if isinstance(error, commands.CommandNotFound): #this error is thrown when the thing you type with the bot's prefix is not a command.
+        if isinstance(error, commands.CommandNotFound):
             msg4 = "No command found!"
             em16 = discord.Embed(title="**Error Block**",
                              color=discord.Color.red())
             em16.add_field(name="__Command Not Found:__", value=msg4)
             await ctx.send(embed=em16)
-        #if isinstance(error, commands.CommandNotFound):
-        #    await ctx.send("This is not a command.")
-        if isinstance(error, commands.CommandOnCooldown):  #The first error which is if your command is on cooldown.
-            msg = 'Still on cooldown, please try again in {:.2f}s.'.format( #this is the error msg that will be shown when there is an error.
+        if isinstance(error, commands.CommandOnCooldown):
+            msg = 'Still on cooldown, please try again in {:.2f}s.'.format(
                 error.retry_after) 
-            em13 = discord.Embed(title="**Error Block**", #making an embed for our error.
+            em13 = discord.Embed(title="**Error Block**",
                                 color=discord.Color.red())
             em13.add_field(name="__Slowmode Error:__", value=msg) 
-            await ctx.send(embed=em13)  #finally sending the "CommandOnCooldown error".
-        if isinstance(error, commands.MissingRequiredArgument): #this is the second error which is missing required arguments.
-            msg2 = "Please enter all the required arguments!" #if you have an ban command and you have not mentioned a user then this error will be thrown.
-            em14 = discord.Embed(title="Error Block", color=discord.Color.red()) #making an embed
+            await ctx.send(embed=em13)
+        if isinstance(error, commands.MissingRequiredArgument):
+            msg2 = "Please enter all the required arguments!"
+            em14 = discord.Embed(title="Error Block", color=discord.Color.red())
             em14.add_field(name="__Missing Required Arguments:__", value=msg2)
             await ctx.send(embed=em14) #sending the embed
-        if isinstance(error, commands.MissingPermissions): #missing permissions like with the ban command if you dont have ban_members perm.
+        if isinstance(error, commands.MissingPermissions):
             msg3 = "You are missing permissions to use that command!"
             em15 = discord.Embed(title="**Error Block**",
                                 color=discord.Color.red())
