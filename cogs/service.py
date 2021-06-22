@@ -1,6 +1,5 @@
 from discord.ext import commands
 from extensions.config.config import settings
-import sys
 
 class Service(commands.Cog):
 
@@ -39,7 +38,7 @@ class Service(commands.Cog):
         if ctx.author.id == int(settings['adminid']):
             await ctx.send('Shutting down... :wave:')
             await ctx.bot.close()
-            sys.exit()
+        else:
             await ctx.send("You don't have enough rights to execute this command.")
 
 def setup(bot):
