@@ -1,11 +1,8 @@
-import json
-import discord
 from discord.ext import commands
 from extensions.config.config import settings
+import sys
 
 class Service(commands.Cog):
-
-    commandd = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
 
     def __init__(self, bot):
         self.bot = bot
@@ -42,7 +39,7 @@ class Service(commands.Cog):
         if ctx.author.id == int(settings['adminid']):
             await ctx.send('Shutting down... :wave:')
             await ctx.bot.close()
-        else:
+            sys.exit()
             await ctx.send("You don't have enough rights to execute this command.")
 
 def setup(bot):

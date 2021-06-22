@@ -7,8 +7,6 @@ class Events(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-
-    commandd = commands.Bot(command_prefix=settings['prefix'])
     
     @commands.Cog.listener()
     
