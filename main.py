@@ -22,6 +22,7 @@ from extensions.config.config import settings
 
 bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
 
+VERSION = "0.0.1"
 
 @bot.event
 async def on_ready():
