@@ -1,7 +1,6 @@
 from configparser import ConfigParser
 
 config = ConfigParser()
-path = "settings.ini"
 
 config.read("settings.ini")
 

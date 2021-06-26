@@ -1,18 +1,19 @@
-import json
-import discord
 from discord.ext import commands
 from extensions.config.config import settings
+import os
+from time import time
 
 class Service(commands.Cog):
-
-    commandd = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
 
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(description='Says "Pong"', brief='Says "Pong"')
     async def ping(self, ctx):
-        await ctx.send('Pong :ping_pong:!')
+        st = time()
+        message = await ctx.send(f"Pong! :ping_pong: DWSP latency: {self.bot.latency*1000:,.0f} ms.")
+        end = time()
+        await message.edit(content=f"Pong! :ping_pong: DWSP latency: {self.bot.latency*1000:,.0f} ms. Response time: {(end-st)*1000:,.0f} ms.")
 
     @commands.command(description="Shows an avatar", brief="Shows an avatar")
     async def avatar(self, ctx):
@@ -41,7 +42,7 @@ class Service(commands.Cog):
     async def shutdown(self, ctx):
         if ctx.author.id == int(settings['adminid']):
             await ctx.send('Shutting down... :wave:')
-            await ctx.bot.close()
+            os.abort()
         else:
             await ctx.send("You don't have enough rights to execute this command.")
 
