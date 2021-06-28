@@ -1,3 +1,4 @@
+import discord
 from discord.ext import commands
 from extensions.config.config import settings
 import os
@@ -18,16 +19,13 @@ class Service(commands.Cog):
     @commands.command(description="Shows an avatar", brief="Shows an avatar")
     async def avatar(self, ctx):
         author = ctx.message.author
+        
+        embed = discord.Embed(title=f"Аватар {author}"[:-5],
+                                color=discord.Color.dark_gray())
+        link = author.avatar_url
+        embed.set_image(url = link)
 
-        # Я просто оставлю это здесь: я хотел, чтобы аватарка показывалась в Embed, а не в обычном тексте.
-
-        # link = {author.avatar_url_as()}
-
-        # embed = discord.Embed(color = 0x002fff, title = 'Аватар пользователя')
-        # embed.set_image(url = link)
-        # await ctx.send(embed = embed)
-
-        await ctx.send(f'{author.avatar_url_as()}')
+        await ctx.send(embed=embed)
 
     @commands.command(description="Just hello", brief="Just hello")
     async def hello(self, ctx):
