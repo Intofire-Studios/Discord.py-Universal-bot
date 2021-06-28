@@ -1,4 +1,4 @@
-# Discord.py-Universal-bot
+# Discord.py Universal bot
 Universal Discord bot based on Discord.py.
 ### What is implemented in the bot:
 - Custom status
