@@ -3,7 +3,6 @@ from os import system
 from sys import platform
 import discord
 from discord.ext import commands
-import extensions.versionhandler.vercheck as ver
 
 from extensions.config.cfgCreate import cfgcreate
 
@@ -22,8 +21,6 @@ if not os.path.exists('settings.ini'):
 from extensions.config.config import settings
 
 bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
-
-ver.update()
 
 @bot.event
 async def on_ready():

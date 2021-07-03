@@ -3,6 +3,7 @@ from discord.ext import commands
 from extensions.config.config import settings
 import os
 from time import time
+import extensions.versionhandler.vercheck as ver
 
 class Service(commands.Cog):
 
@@ -40,6 +41,7 @@ class Service(commands.Cog):
     async def shutdown(self, ctx):
         if ctx.author.id == int(settings['adminid']):
             await ctx.send('Shutting down... :wave:')
+            ver.update()
             os.abort()
         else:
             await ctx.send("You don't have enough rights to execute this command.")
