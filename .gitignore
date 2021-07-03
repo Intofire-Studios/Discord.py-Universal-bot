@@ -5,3 +5,4 @@ modules/__pycache__/*
 extensions/databases/ranks.db
 extensions/json/reactrole.json
 extensions/config/__pycache__/*
+extensions/versionhandler/__pycache__/*
