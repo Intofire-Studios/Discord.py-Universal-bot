@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from extensions.config.config import settings
+from extensions.config.config import settings, lang
 import os
 from time import time
 import extensions.versionhandler.vercheck as ver
@@ -40,11 +40,11 @@ class Service(commands.Cog):
     @commands.command(description="Shutdown the bot", brief="Shutdown the bot")
     async def shutdown(self, ctx):
         if ctx.author.id == int(settings['adminid']):
-            await ctx.send('Shutting down... :wave:')
+            await ctx.send(lang['shutdown'])
             ver.update()
             os.abort()
         else:
-            await ctx.send("You don't have enough rights to execute this command.")
+            await ctx.send(lang['notenoughrights'])
 
 def setup(bot):
     bot.add_cog(Service(bot))

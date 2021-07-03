@@ -18,7 +18,7 @@ path = 'settings.ini'
 if not os.path.exists('settings.ini'):
     cfgcreate(path)
 
-from extensions.config.config import settings
+from extensions.config.config import settings, lang
 
 bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.all())
 
@@ -51,18 +51,18 @@ async def on_ready():
 async def unload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
-        await ctx.send("Cog is unloaded...")
+        await ctx.send(lang['cogunload'])
     else:
-        await ctx.send("You don't have enough rights to execute this command.")
+        await ctx.send(lang['notenoughrights'])
 
 
 @bot.command(description="Load cogs", brief="load [cog_name]")
 async def load(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.load_extension(f"cogs.{extension}")
-        await ctx.send("Cog is loaded...")
+        await ctx.send(lang['cogload'])
     else:
-        await ctx.send("You don't have enough rights to execute this command.")
+        await ctx.send(lang['notenoughrights'])
 
 
 @bot.command(description="Reload cogs", brief="reload [cog_name]")
@@ -70,9 +70,9 @@ async def reload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
         bot.load_extension(f"cogs.{extension}")
-        await ctx.send("Cog is reloaded...")
+        await ctx.send(lang['cogreload'])
     else:
-        await ctx.send("You don't have enough rights to execute this command.")
+        await ctx.send(lang['notenoughrights'])
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py") and filename != "__init__.py":
