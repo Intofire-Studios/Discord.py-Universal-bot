@@ -13,15 +13,15 @@ class Service(commands.Cog):
     @commands.command(description='Says "Pong"', brief='Says "Pong"')
     async def ping(self, ctx):
         st = time()
-        message = await ctx.send(f"Pong! :ping_pong: DWSP latency: {self.bot.latency*1000:,.0f} ms.")
+        message = await ctx.send(lang['latency'] + f" {self.bot.latency*1000:,.0f} ms.")
         end = time()
-        await message.edit(content=f"Pong! :ping_pong: DWSP latency: {self.bot.latency*1000:,.0f} ms. Response time: {(end-st)*1000:,.0f} ms.")
+        await message.edit(content=lang['latency'] + f" {self.bot.latency*1000:,.0f} ms. " + lang['response'] + f" {(end-st)*1000:,.0f} ms.")
 
     @commands.command(description="Shows an avatar", brief="Shows an avatar")
     async def avatar(self, ctx):
         author = ctx.message.author
         
-        embed = discord.Embed(title=f"Аватар {author}"[:-5],
+        embed = discord.Embed(title=lang['avatar'] + f" {author}"[:-5],
                                 color=discord.Color.dark_gray())
         link = author.avatar_url
         embed.set_image(url = link)
@@ -31,7 +31,7 @@ class Service(commands.Cog):
     @commands.command(description="Just hello", brief="Just hello")
     async def hello(self, ctx):
         author = ctx.message.author
-        await ctx.send(f'Hello, {author.mention}!')
+        await ctx.send(lang['hello'] + f', {author.mention}!')
 
     @commands.command(pass_context=True, description="Will repeat the text", brief="Will repeat the text")
     async def say(self, ctx, arg):
