@@ -18,6 +18,10 @@ section = language.upper()
 config.read("locales/{}.ini".format(language))
 
 lang = {
+    'login': config.get(section, "login"),
+    'prefix': config.get(section, "prefix"),
+    'status': config.get(section, "status"),
+    'playing': config.get(section, "playing"),
     'cogunload': config.get(section, "cogunload"),
     'cogload': config.get(section, "cogload"),
     'notenoughrights': config.get(section, "notenoughrights"),
