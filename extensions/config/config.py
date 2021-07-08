@@ -100,4 +100,10 @@ lang = {
     'unbanbrief': config.get(section, "unbanbrief"),
     'noreason': config.get(section, "noreason"),
     'clearbrief': config.get(section, "clearbrief"),
+    'cleardc': config.get(section, "cleardc"),
+    'rolldc': config.get(section, "rolldc"),
+    'dicedc': config.get(section, "dicedc"),
+    'coindc': config.get(section, "coindc"),
+    'coinheads': config.get(section, "coinheads"),
+    'cointails': config.get(section, "cointails"),
 }
