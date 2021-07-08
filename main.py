@@ -47,7 +47,7 @@ async def on_ready():
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 
 
-@bot.command(description="Unload cogs", brief="unload [cog_name]")
+@bot.command(description=lang['unloaddc'], brief=lang['unloadbrief'])
 async def unload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
@@ -56,7 +56,7 @@ async def unload(ctx, extension):
         await ctx.send(lang['notenoughrights'])
 
 
-@bot.command(description="Load cogs", brief="load [cog_name]")
+@bot.command(description=lang['loaddc'], brief=lang['loadbrief'])
 async def load(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.load_extension(f"cogs.{extension}")
@@ -65,7 +65,7 @@ async def load(ctx, extension):
         await ctx.send(lang['notenoughrights'])
 
 
-@bot.command(description="Reload cogs", brief="reload [cog_name]")
+@bot.command(description=lang['reloaddc'], brief=lang['reloadbrief'])
 async def reload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")

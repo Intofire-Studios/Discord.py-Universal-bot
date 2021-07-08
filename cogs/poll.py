@@ -6,7 +6,7 @@ class Poll(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(description="Creates a poll", brief="Creates a poll")
+    @commands.command(description=lang['polldc'], brief=lang['polldc'])
     async def poll(self, ctx, *, question=None):
         if question is None:
             await ctx.send(lang['notpoll'])

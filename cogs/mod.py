@@ -6,19 +6,19 @@ class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(description="kick user", brief="kick [ping/ID]")
+    @commands.command(description=lang['kickdc'], brief=lang['kickbrief'])
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member: discord.Member, *, reason="No reason"):
+    async def kick(self, ctx, member: discord.Member, *, reason=lang['noreason']):
         await member.kick(reason=reason)
         await ctx.send(f"{member.mention} " + lang['kickby'] + f" {ctx.author.mention}. [{reason}]")
 
-    @commands.command(description="ban user", brief="ban [ping/ID]")
+    @commands.command(description=lang['bandc'], brief=lang['banbrief'])
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason="No reason"):
+    async def ban(self, ctx, member: discord.Member, *, reason=lang['noreason']):
         await member.ban(reason=reason)
         await ctx.send(f"{member.mention} " + lang['banby'] + f" {ctx.author.mention}. [{reason}]")
     
-    @commands.command(description="unban user", brief="unban [ping/ID]")
+    @commands.command(description=lang['unbandc'], brief=lang['unbanbrief'])
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, member):
         banned_users = await ctx.guild.bans()
@@ -31,7 +31,7 @@ class Moderation(commands.Cog):
                 await ctx.guild.unban(user)
                 await ctx.send(f"{user.mention} " + lang['unbanby'] + f" {ctx.author.mention}")
 
-    @commands.command(description="clear messages", brief="clear [number]")
+    @commands.command(description=lang['cleardc'], brief=lang['clearbrief'])
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount: int):
         await ctx.channel.purge(limit=amount+1)

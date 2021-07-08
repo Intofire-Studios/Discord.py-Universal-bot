@@ -8,7 +8,7 @@ class Pics(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(description="Gives a random fox picture", brief="fox")
+    @commands.command(description=lang['foxdc'], brief=lang['foxbrief'])
     async def fox(self, ctx):
         response = requests.get('https://some-random-api.ml/img/fox')
         json_data = json.loads(response.text)
@@ -18,8 +18,8 @@ class Pics(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(
-        description="Gives a random cat picture",
-        brief="cat")
+        description=lang['catdc'],
+        brief=lang['catbrief'])
     async def cat(self, ctx):
         response = requests.get('https://some-random-api.ml/img/cat')
         json_data = json.loads(response.text)

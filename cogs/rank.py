@@ -199,7 +199,7 @@ class Rank(commands.Cog):
         bit.seek(0)
         return bit
 
-    @commands.command(description="View your rank", brief="View your rank")
+    @commands.command(description=lang['rankdc'], brief=lang['rankdc'])
     async def rank(self, ctx: commands.Context, member: discord.Member = None):
         member = member or ctx.author
         cursor = await self.db.cursor()

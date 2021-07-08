@@ -10,14 +10,14 @@ class Service(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(description='Says "Pong"', brief='Says "Pong"')
+    @commands.command(description=lang['pongdc'], brief=lang['pongdc'])
     async def ping(self, ctx):
         st = time()
         message = await ctx.send(lang['latency'] + f" {self.bot.latency*1000:,.0f} ms.")
         end = time()
         await message.edit(content=lang['latency'] + f" {self.bot.latency*1000:,.0f} ms. " + lang['response'] + f" {(end-st)*1000:,.0f} ms.")
 
-    @commands.command(description="Shows an avatar", brief="Shows an avatar")
+    @commands.command(description=lang['avatardc'], brief=lang['avatardc'])
     async def avatar(self, ctx):
         author = ctx.message.author
         
@@ -28,16 +28,16 @@ class Service(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(description="Just hello", brief="Just hello")
+    @commands.command(description=lang['hellodc'], brief=lang['hellodc'])
     async def hello(self, ctx):
         author = ctx.message.author
         await ctx.send(lang['hello'] + f', {author.mention}!')
 
-    @commands.command(pass_context=True, description="Will repeat the text", brief="Will repeat the text")
+    @commands.command(pass_context=True, description=lang['saydc'], brief=lang['saydc'])
     async def say(self, ctx, arg):
         await ctx.send(arg)
 
-    @commands.command(description="Shutdown the bot", brief="Shutdown the bot")
+    @commands.command(description=lang['shutdowndc'], brief=lang['shutdowndc'])
     async def shutdown(self, ctx):
         if ctx.author.id == int(settings['adminid']):
             await ctx.send(lang['shutdown'])

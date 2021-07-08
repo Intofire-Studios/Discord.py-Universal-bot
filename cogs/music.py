@@ -56,7 +56,7 @@ class Music(commands.Cog):
         else:
             asyncio.run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
 
-    @commands.command(brief='play [url/key_words]', description='Plays youtube videos')
+    @commands.command(brief=lang['playbrief'], description=lang['playdc'])
     async def play(self, ctx, *arg):
         channel = ctx.message.author.voice.channel
         await ctx.channel.purge(limit=1)
@@ -82,7 +82,7 @@ class Music(commands.Cog):
                     ":white_check_mark: " + lang['track'] + f" **{song['title']}** " + lang['trackadded'] + f" ({len(self.song_queue)-1} " + lang['togo'] + ")",
                     delete_after=self.song_queue[0]['duration'])
 
-    @commands.command(aliases=['q'], brief="queue", description="Queue")
+    @commands.command(aliases=['q'], brief=lang['queuebrief'], description=lang['queuedc'])
     async def queue(self, ctx):
         await ctx.channel.purge(limit=1)
         voice = get(self.bot.voice_clients, guild=ctx.guild)
@@ -98,7 +98,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("❌ " + lang['notplaying'], delete_after=5.0)
 
-    @commands.command(brief='pause', description='Pauses or resumes the current song')
+    @commands.command(brief=lang['pausebrief'], description=lang['pausedc'])
     async def pause(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         await ctx.channel.purge(limit=1)
@@ -112,7 +112,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("❌ " + lang['notconnected'], delete_after=5.0)
 
-    @commands.command(aliases=['s', 'pass'], brief='skip', description='Skips the current song')
+    @commands.command(aliases=['s', 'pass'], brief=lang['skipbrief'], description=lang['skipdc'])
     async def skip(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         await ctx.channel.purge(limit=1)
