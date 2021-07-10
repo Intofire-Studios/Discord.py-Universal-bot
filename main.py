@@ -42,7 +42,7 @@ async def on_ready():
     stat = "\033[33m {}" .format(lang['status'] + ": " + settings['status'])
     table = [[stat]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ")
-    pl = "\033[34m {}" .format(lang['playing'] + ": " + settings['playing'])
+    pl = "\033[34m {}" .format(lang['playing'] + " " + settings['playing'])
     table = [[pl]]
     print(tabulate(table, tablefmt='grid'), "\033[0m ", sep='\n')
 

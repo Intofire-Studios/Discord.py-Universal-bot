@@ -15,7 +15,7 @@ def cfgcreate(path):
     config.set("BOT", "status", input("\033[31m {}" .format("Enter bot status (online, idle, dnd, invisible):") + "\033[0m "))
     config.set("BOT", "playing", input("\033[31m {}" .format("Enter the name of the game that the bot will play:") + "\033[0m "))
     config.add_section("LOCALE")
-    config.set("LOCALE", "language", input("\033[31m {}" .format("Enter your language (EN):") + "\033[0m ").upper())
+    config.set("LOCALE", "language", input("\033[31m {}" .format("Enter your language (EN or RU):") + "\033[0m ").upper())
     with open(path, "w+") as config_file:
         path = "settings.ini"
         config.write(config_file)
