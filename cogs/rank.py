@@ -6,6 +6,7 @@ import aiohttp
 import aiosqlite
 import discord
 from discord.ext import commands
+from extensions.config.config import lang
 
 class Rank(commands.Cog):
     def __init__(self, bot):
@@ -48,7 +49,7 @@ class Rank(commands.Cog):
         if self.calculate_level(xp) > level:
             level += 1
             # 1,000
-            await message.channel.send(f"Congratulations, {message.author.mention}. You are levelled up to {level:,}.")
+            await message.channel.send(lang['congrats'] + f" {message.author.mention}. " + lang['lvlup'] + f" {level:,}" + "!")
 
         cursor = await self.db.cursor()
         await cursor.execute('Update users set xp=?, level=? where user_id=? and guild_id=?', (xp, level, user_id, guild_id))
@@ -198,7 +199,7 @@ class Rank(commands.Cog):
         bit.seek(0)
         return bit
 
-    @commands.command(description="View your rank", brief="View your rank")
+    @commands.command(description=lang['rankdc'], brief=lang['rankdc'])
     async def rank(self, ctx: commands.Context, member: discord.Member = None):
         member = member or ctx.author
         cursor = await self.db.cursor()

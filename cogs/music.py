@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord.utils import get
 import requests
 import youtube_dl
+from extensions.config.config import lang
 
 class Music(commands.Cog):
     def __init__(self, bot):
@@ -33,11 +34,11 @@ class Music(commands.Cog):
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(f"ytsearch:{arg}", download=False)['entries'][0]
 
-        embed = (discord.Embed(title='🎵 Now playing:', description=f"{info['title']}", color=discord.Color.blue())
-                 .add_field(name='Duration', value=Music.parse_duration(info['duration']))
-                 .add_field(name='Requested by', value=author)
-                 .add_field(name='Uploader', value=f"[{info['uploader']}]({info['channel_url']})")
-                 .add_field(name='URL', value=f"[Link to the video]({info['webpage_url']})")
+        embed = (discord.Embed(title='🎵 ' + lang['nowplaying'] + ":", description=f"{info['title']}", color=discord.Color.blue())
+                 .add_field(name=lang['duration'], value=Music.parse_duration(info['duration']))
+                 .add_field(name=lang['reqby'], value=author)
+                 .add_field(name=lang['uploader'], value=f"[{info['uploader']}]({info['channel_url']})")
+                 .add_field(name=lang['url'], value=f"[Link to the video]({info['webpage_url']})")
                  .set_thumbnail(url=info['thumbnail']))
 
         return {'embed': embed, 'source': info['formats'][0]['url'], 'title': info['title'], 'duration': info['duration']}
@@ -55,7 +56,7 @@ class Music(commands.Cog):
         else:
             asyncio.run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
 
-    @commands.command(brief='play [url/key_words]', description='Plays youtube videos')
+    @commands.command(brief=lang['playbrief'], description=lang['playdc'])
     async def play(self, ctx, *arg):
         channel = ctx.message.author.voice.channel
         await ctx.channel.purge(limit=1)
@@ -78,48 +79,48 @@ class Music(commands.Cog):
                 await ctx.send(embed=song['embed'], delete_after=song['duration'])
             else:
                 await ctx.send(
-                    f":white_check_mark: Track **{song['title']}**  has been added to queue ({len(self.song_queue)-1} to go)",
+                    ":white_check_mark: " + lang['track'] + f" **{song['title']}** " + lang['trackadded'] + f" ({len(self.song_queue)-1} " + lang['togo'] + ")",
                     delete_after=self.song_queue[0]['duration'])
 
-    @commands.command(aliases=['q'], brief="queue", description="Queue")
+    @commands.command(aliases=['q'], brief=lang['queuebrief'], description=lang['queuedc'])
     async def queue(self, ctx):
         await ctx.channel.purge(limit=1)
         voice = get(self.bot.voice_clients, guild=ctx.guild)
-        embed = discord.Embed(color=discord.Color.blue(), title="⏱️ Queue:")
+        embed = discord.Embed(color=discord.Color.blue(), title="⏱️ " + lang['queue'] + ":")
         if voice and voice.is_playing():
             for i in self.song_queue:
                 if self.song_queue.index(i) == 0:
-                    embed.add_field(name='**🔴 Now playing:**', value=f"{i['title']}", inline=False)
+                    embed.add_field(name='**🔴 ' + lang['nowplaying'] + '**', value=f"{i['title']}", inline=False)
                 else:
                     embed.add_field(
                         name=f'**🎵 Track n°{self.song_queue.index(i)} :**', value=f"{i['title']}", inline=False)
             await ctx.send(embed=embed, delete_after=self.song_queue[0]['duration'])
         else:
-            await ctx.send("❌ I'm not playing anything!", delete_after=5.0)
+            await ctx.send("❌ " + lang['notplaying'] + "!", delete_after=5.0)
 
-    @commands.command(brief='pause', description='Pauses or resumes the current song')
+    @commands.command(brief=lang['pausebrief'], description=lang['pausedc'])
     async def pause(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         await ctx.channel.purge(limit=1)
         if voice and voice.is_connected():
             if voice.is_playing():
-                await ctx.send('⏸️ Music paused', delete_after=5.0)
+                await ctx.send('⏸️ ' + lang['pause'], delete_after=5.0)
                 voice.pause()
             else:
-                await ctx.send('⏯️ Music resumed', delete_after=5.0)
+                await ctx.send('⏯️ ' + lang['resume'], delete_after=5.0)
                 voice.resume()
         else:
-            await ctx.send("❌ I'm not connected to any channel!", delete_after=5.0)
+            await ctx.send("❌ " + lang['notconnected'] + "!", delete_after=5.0)
 
-    @commands.command(aliases=['s', 'pass'], brief='skip', description='Skips the current song')
+    @commands.command(aliases=['s', 'pass'], brief=lang['skipbrief'], description=lang['skipdc'])
     async def skip(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         await ctx.channel.purge(limit=1)
         if voice and voice.is_playing():
-            await ctx.send('⏭️ Music skipped', delete_after=5.0)
+            await ctx.send('⏭️ ' + lang['skip'], delete_after=5.0)
             voice.stop()
         else:
-            await ctx.send("❌ I'm not playing anything!", delete_after=5.0)
+            await ctx.send("❌ " + lang['notplaying'] + "!", delete_after=5.0)
 
 
 def setup(bot):

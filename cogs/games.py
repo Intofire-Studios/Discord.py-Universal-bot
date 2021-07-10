@@ -1,30 +1,32 @@
 import random
 from discord.ext import commands
 
+from extensions.config.config import lang
+
 class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(
-        description="Gives a random number between 1 and 100",
-        brief="Gives a random number between 1 and 100")
+        description=lang['rolldc'],
+        brief=lang['rolldc'])
     async def roll(self, ctx):
         num = random.randrange(1, 100)
         await ctx.send(num)
 
     @commands.command(
-        description="Random number between 1 and 6",
-        brief="Random number between 1 and 6")
+        description=lang['dicedc'],
+        brief=lang['dicedc'])
     async def dice(self, ctx):
         num = random.randrange(1, 6)
         await ctx.send(num)
 
     @commands.command(
-        description="Either Heads or Tails",
-        brief="Either Heads or Tails")
+        description=lang['coindc'],
+        brief=lang['coindc'])
     async def coin(self, ctx):
         num = random.randint(0, 1)
-        await ctx.send("Heads" if num == 1 else "Tails")
+        await ctx.send(lang['coinheads'] if num == 1 else lang['cointails'])
 
 
 def setup(bot):
