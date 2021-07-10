@@ -49,7 +49,7 @@ class Rank(commands.Cog):
         if self.calculate_level(xp) > level:
             level += 1
             # 1,000
-            await message.channel.send(lang['congrats'] + f" {message.author.mention}" + lang['lvlup'] + f" {level:,}" + "!")
+            await message.channel.send(lang['congrats'] + f" {message.author.mention}. " + lang['lvlup'] + f" {level:,}" + "!")
 
         cursor = await self.db.cursor()
         await cursor.execute('Update users set xp=?, level=? where user_id=? and guild_id=?', (xp, level, user_id, guild_id))

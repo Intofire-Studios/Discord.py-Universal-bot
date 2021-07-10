@@ -51,18 +51,18 @@ async def on_ready():
 async def unload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
-        await ctx.send(lang['cogunload'])
+        await ctx.send(lang['cogunload'] + "...")
     else:
-        await ctx.send(lang['notenoughrights'])
+        await ctx.send(lang['notenoughrights'] + ".")
 
 
 @bot.command(description=lang['loaddc'], brief=lang['loadbrief'])
 async def load(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.load_extension(f"cogs.{extension}")
-        await ctx.send(lang['cogload'])
+        await ctx.send(lang['cogload'] + "...")
     else:
-        await ctx.send(lang['notenoughrights'])
+        await ctx.send(lang['notenoughrights'] + ".")
 
 
 @bot.command(description=lang['reloaddc'], brief=lang['reloadbrief'])
@@ -70,9 +70,9 @@ async def reload(ctx, extension):
     if ctx.author.id == int(settings['adminid']):
         bot.unload_extension(f"cogs.{extension}")
         bot.load_extension(f"cogs.{extension}")
-        await ctx.send(lang['cogreload'])
+        await ctx.send(lang['cogreload'] + "...")
     else:
-        await ctx.send(lang['notenoughrights'])
+        await ctx.send(lang['notenoughrights'] + ".")
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py") and filename != "__init__.py":

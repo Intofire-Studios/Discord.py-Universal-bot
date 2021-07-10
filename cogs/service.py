@@ -13,9 +13,9 @@ class Service(commands.Cog):
     @commands.command(description=lang['pongdc'], brief=lang['pongdc'])
     async def ping(self, ctx):
         st = time()
-        message = await ctx.send(lang['pong'] + " :ping_pong: " + lang['latency'] + f" {self.bot.latency*1000:,.0f} ms.")
+        message = await ctx.send(lang['pong'] + "! :ping_pong: " + lang['latency'] + f": {self.bot.latency*1000:,.0f} ms.")
         end = time()
-        await message.edit(content=lang['pong'] + " :ping_pong: " + lang['latency'] + f" {self.bot.latency*1000:,.0f} ms. " + lang['response'] + f" {(end-st)*1000:,.0f} ms.")
+        await message.edit(content=lang['pong'] + "! :ping_pong: " + lang['latency'] + f": {self.bot.latency*1000:,.0f} ms. " + lang['response'] + f": {(end-st)*1000:,.0f} ms.")
 
     @commands.command(description=lang['avatardc'], brief=lang['avatardc'])
     async def avatar(self, ctx):
@@ -40,11 +40,11 @@ class Service(commands.Cog):
     @commands.command(description=lang['shutdowndc'], brief=lang['shutdowndc'])
     async def shutdown(self, ctx):
         if ctx.author.id == int(settings['adminid']):
-            await ctx.send(lang['shutdown'])
+            await ctx.send(lang['shutdown'] + "... :wave:")
             ver.update()
             os.abort()
         else:
-            await ctx.send(lang['notenoughrights'])
+            await ctx.send(lang['notenoughrights'] + ".")
 
 def setup(bot):
     bot.add_cog(Service(bot))

@@ -12,10 +12,10 @@ class Events(commands.Cog):
     
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.CommandNotFound):
-            msg4 = lang['msgcmdnotfound']
+            msg4 = lang['msgcmdnotfound'] + "!"
             em16 = discord.Embed(title="**" + lang['errorblock'] + "**",
                              color=discord.Color.red())
-            em16.add_field(name="__" + lang['cmdnotfound'] + "__", value=msg4)
+            em16.add_field(name="__" + lang['cmdnotfound'] + ":__", value=msg4)
             await ctx.send(embed=em16)
         if isinstance(error, commands.CommandOnCooldown):
             msg = lang['msgslowmodeerror'] + ' {:.2f}s.'.format(
