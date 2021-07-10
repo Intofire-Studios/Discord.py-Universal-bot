@@ -34,7 +34,7 @@ class Music(commands.Cog):
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(f"ytsearch:{arg}", download=False)['entries'][0]
 
-        embed = (discord.Embed(title='🎵 ' + lang['nowplaying'], description=f"{info['title']}", color=discord.Color.blue())
+        embed = (discord.Embed(title='🎵 ' + lang['nowplaying'] + ":", description=f"{info['title']}", color=discord.Color.blue())
                  .add_field(name=lang['duration'], value=Music.parse_duration(info['duration']))
                  .add_field(name=lang['reqby'], value=author)
                  .add_field(name=lang['uploader'], value=f"[{info['uploader']}]({info['channel_url']})")
@@ -86,7 +86,7 @@ class Music(commands.Cog):
     async def queue(self, ctx):
         await ctx.channel.purge(limit=1)
         voice = get(self.bot.voice_clients, guild=ctx.guild)
-        embed = discord.Embed(color=discord.Color.blue(), title="⏱️ " + lang['queue'])
+        embed = discord.Embed(color=discord.Color.blue(), title="⏱️ " + lang['queue'] + ":")
         if voice and voice.is_playing():
             for i in self.song_queue:
                 if self.song_queue.index(i) == 0:
@@ -96,7 +96,7 @@ class Music(commands.Cog):
                         name=f'**🎵 Track n°{self.song_queue.index(i)} :**', value=f"{i['title']}", inline=False)
             await ctx.send(embed=embed, delete_after=self.song_queue[0]['duration'])
         else:
-            await ctx.send("❌ " + lang['notplaying'], delete_after=5.0)
+            await ctx.send("❌ " + lang['notplaying'] + "!", delete_after=5.0)
 
     @commands.command(brief=lang['pausebrief'], description=lang['pausedc'])
     async def pause(self, ctx):
@@ -110,7 +110,7 @@ class Music(commands.Cog):
                 await ctx.send('⏯️ ' + lang['resume'], delete_after=5.0)
                 voice.resume()
         else:
-            await ctx.send("❌ " + lang['notconnected'], delete_after=5.0)
+            await ctx.send("❌ " + lang['notconnected'] + "!", delete_after=5.0)
 
     @commands.command(aliases=['s', 'pass'], brief=lang['skipbrief'], description=lang['skipdc'])
     async def skip(self, ctx):
@@ -120,7 +120,7 @@ class Music(commands.Cog):
             await ctx.send('⏭️ ' + lang['skip'], delete_after=5.0)
             voice.stop()
         else:
-            await ctx.send("❌ " + lang['notplaying'], delete_after=5.0)
+            await ctx.send("❌ " + lang['notplaying'] + "!", delete_after=5.0)
 
 
 def setup(bot):
