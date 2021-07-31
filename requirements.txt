@@ -6,3 +6,4 @@ tabulate==0.8.9
 aiosqlite==0.17.0
 discord==1.7.3
 Pillow==8.2.0
+

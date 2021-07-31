@@ -3,6 +3,7 @@ from os import system
 from sys import platform
 import discord
 from discord.ext import commands
+import extensions.versionhandler.vercheck as ver
 
 from extensions.config.cfgCreate import cfgcreate
 
@@ -24,6 +25,7 @@ bot = commands.Bot(command_prefix=settings['prefix'], intents=discord.Intents.al
 
 @bot.event
 async def on_ready():
+    ver.update()
     if settings['status'] == "online":
         await bot.change_presence(status=discord.Status.online, activity=discord.Game(settings['playing']))
     elif settings['status'] == "idle":

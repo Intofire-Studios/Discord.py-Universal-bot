@@ -3,7 +3,6 @@ from discord.ext import commands
 from extensions.config.config import settings, lang
 import os
 from time import time
-import extensions.versionhandler.vercheck as ver
 
 class Service(commands.Cog):
 
@@ -41,7 +40,6 @@ class Service(commands.Cog):
     async def shutdown(self, ctx):
         if ctx.author.id == int(settings['adminid']):
             await ctx.send(lang['shutdown'] + "... :wave:")
-            ver.update()
             os.abort()
         else:
             await ctx.send(lang['notenoughrights'] + ".")
